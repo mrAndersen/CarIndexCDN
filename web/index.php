@@ -6,6 +6,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Lib\Sys;
 
+$valid_passwords = array ("root" => "monitor$1");
+$valid_users = array_keys($valid_passwords);
+
+$user = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : null;
+$pass = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : null;
+
+$validated = (in_array($user, $valid_users)) && ($pass == $valid_passwords[$user]);
+
+if (!$validated) {
+    header('WWW-Authenticate: Basic realm="Authorization Needed"');
+    header('HTTP/1.0 401 Unauthorized');
+    die ("Not authorized");
+}
+
 $request    = Request::createFromGlobals();
 Twig_Autoloader::register();
 !is_dir('files') ? mkdir('files') : null;
