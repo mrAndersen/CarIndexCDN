@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <h1>CDN</h1>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="index.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="files">Файлы(png, jpeg, jpg) < 1Мб каждый</label>
+                        <input type="file" name="images[]" multiple class="form-control" id="files" placeholder="Файлы">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Загрузить</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="ocl-md-12">
+                Всего файлов в хранилище: {{ count }}<br>
+                Размером: {{ size }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
