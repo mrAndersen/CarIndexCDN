@@ -4,7 +4,7 @@ require_once "../vendor/autoload.php";
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Code\Sys;
+use Lib\Sys;
 
 $request    = Request::createFromGlobals();
 Twig_Autoloader::register();
