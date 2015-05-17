@@ -8,6 +8,7 @@ use Lib\Sys;
 
 $request    = Request::createFromGlobals();
 Twig_Autoloader::register();
+!is_dir('files') ? mkdir('files') : null;
 
 if($request->getMethod() == 'GET'){
     $files          = scandir('files');
@@ -29,7 +30,6 @@ if($request->getMethod() == 'GET'){
 
 if($request->getMethod() == 'POST'){
     $images     = $request->files->get('images');
-    !is_dir('files') ? mkdir('files') : null;
 
     if(count($images) > 0){
         $links = [];
